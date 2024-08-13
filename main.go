@@ -29,10 +29,14 @@ func main() {
 		address := os.Args[1]
 		peerInfo, err := connectPeer(host, address)
 		if err != nil {
-			log.Fatal("Error connecting or sending message:", err)
+			log.Fatal("Error connecting peer:", err)
 		}
 
-		sendMessage(host, peerInfo)
+		err = sendMessage(host, peerInfo)
+
+		if err != nil {
+			log.Fatal("Error sending message:", err)
+		}
 	}
 
 	// Keep the application running
